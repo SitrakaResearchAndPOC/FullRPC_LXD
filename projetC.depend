@@ -1,0 +1,25 @@
+# depslib dependency file v1.0
+1691333363 source:d:\projetc\projetc\main.c
+	<stdio.h>
+	<stdlib.h>
+	"tri.h"
+
+1691332595 source:d:\projetc\projetc\fonction_tri.c
+	<stdio.h>
+	<stdlib.h>
+	"tri.h"
+
+1691333197 d:\projetc\projetc\tri.h
+
+1691333270 source:d:\projetc\projetc\fonction_tableau.c
+	<stdio.h>
+	<stdlib.h>
+	"tri.h"
+
+1691297918 source:c:\users\sitraka\downloads\projetc-20231120t164104z-001\projetc\main.c
+	<stdio.h>
+	<stdlib.h>
+	"tri.h"
+
+1691297196 c:\users\sitraka\downloads\projetc-20231120t164104z-001\projetc\tri.h
+
