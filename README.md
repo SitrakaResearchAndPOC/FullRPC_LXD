@@ -55,10 +55,10 @@ lxc exec FullRPC -- bash
 ```
 ./SOCKET/tpsocket/tcpclient
  ```
-Dans l’autre terminal :  
-Tapez hey :  
-Dans l’autre terminal : 
-Tapez : ok 
-Dans l’autre terminal : 
-Quittez
+Dans l’autre terminal :  </br>
+Tapez hey :  </br>
+Dans l’autre terminal : </br>
+Tapez : ok </br>
+Dans l’autre terminal : </br>
+Quittez </br>
 
