@@ -1648,10 +1648,10 @@ md5sum 7f896585044a87054e5da9aaa1a7b88d65618cbc47148741e90dedaca32c07f8.tar.gz
 chmod 777 7f896585044a87054e5da9aaa1a7b88d65618cbc47148741e90dedaca32c07f8.tar.gz
 ```
 # Remarques 
-LES CODES DE C ET RPC SERONT DANS GITHUB : 
+LES CODES DE C ET RPC SERONT DANS GITHUB : </br>
 •	https://github.com/ImsicatcherBastienbaranoff/RPC
 •	https://github.com/ImsicatcherBastienbaranoff/TPC
 
-POUR PLUS DE PRATIQUE ET COURS: VEUILLEZ FAIRE LA LECTURE DES DEUX CHAINES YOUTUBE: 
+POUR PLUS DE PRATIQUE ET COURS: VEUILLEZ FAIRE LA LECTURE DES DEUX CHAINES YOUTUBE: </br>
 •	https://www.youtube.com/playlist?list=PLF7E20B552F65C51C
 •	https://www.youtube.com/playlist?list=PLOholRFa862SX9Ypgk3vsByrfMT_hMq-l
