@@ -152,26 +152,41 @@ cd TPC/
 ```
 nano helloworld.c
 ```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
 ```
-#include <stdio.h> </br>
-#include <stdlib.h> </br>
+#include <stdio.h>
+#include <stdlib.h>
 
-void main(){ </br>
-	&nbsp; printf("hello world\n"); </br>
-} </br>
+void main(){
+	printf("hello world\n");
+}
 ```
-
+```
 gcc -c helloworld.c
+```
+```
 gcc -o helloworld helloworld.o
+```
+```
 chmod +x helloworld
+```
+```
 ./helloworld
- 
+ ```
+```
+exit
+```
 
-REPONSE 3.2 
+# Reponse 3.2 
 3.2 -> Affichage d’un variable ayant comme contenu 10
+```
+lxc exec FullRPC -- bash
+```
+```
 nano affichageVar.c
- 
-
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h> 
 #include <stdlib.h> 
 
@@ -179,24 +194,36 @@ void main(){
 	int var = 10;
 	printf("le variable est donc %d \n", var);
 }
-
-
+```
+```
 gcc -c affichageVar.c
+```
+```
 gcc -o affichageVar affichageVar.o
+```
+```
 chmod +x affichageVar
+```
+```
 ./affichageVar
- 
+```
+```
+exit
+```
 
-REPONSE 3.3
-3.3 -> Afffichage de texte entrée comme paramètre en ligne de commande
-La declaration de main deviant c.f https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean : 
-int main (int argc, char *argv[]); //first declaration
-int main (int argc, char **argv);  //RE-DECLARATION. Equivalent to the above declaration
-
- 
-Le code final sera donc : 
+# Reponse 3.3
+3.3 -> Afffichage de texte entrée comme paramètre en ligne de commande </br>
+La declaration de main deviant c.f [argc](https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean) : 
+int main (int argc, char *argv[]); //first declaration </br>
+int main (int argc, char **argv);  //RE-DECLARATION. Equivalent to the above declaration </br>
+```
+lxc exec FullRPC -- bash 
+```
+```
 nano affichage.c
- 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
 int main (int argc, char *argv[]){
@@ -208,27 +235,45 @@ int main (int argc, char *argv[]){
 	} else {
 		printf("le nombre de paramètre est invalide \n");	
 	}
-
 }
-
+```
+```
 gcc -c affichage.c 
+```
+```
 gcc -o affichage affichage.o 
+```
+```
 chmod +x affichage
-
+```
 Test après : 
+```
 ./affichage
- 
+```
+```
 ./affichage test
- 
+```
+```
 ./affichage "test is ok"
- 
+```
+```
 ./affichage test is ok
+```
+```
+exit
+```
  
 
-REPONSE 3.4
+# Reponse 3.4
 3.4 -> Affichage de texte avec plusieurs arguments en ligne de commande
+```
+lxc exec FullRPC -- bash
+```
+```
 nano affichageMultiple.c
- 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
 int main (int argc, char *argv[]){
@@ -244,54 +289,84 @@ int main (int argc, char *argv[]){
 		printf("le nombre de paramè?tre est invalide \n");	
 	}
 }
-
+```
+```
 gcc -c affichageMultiple.c
+```
+```
 gcc -o affichageMultiple affichageMultiple.o
+```
+```
 chmod +x affichageMultiple
+```
+```
 ./affichageMultiple
- 
+```
+``` 
 ./affichageMultiple test
- 
+```
+``` 
 ./affichageMultiple "test is ok"
- 
+```
+``` 
 ./affichageMultiple test is ok
- 
+```
+```
+exit
+```
 
-REPONSE 3.5
+
+# Reponse 3.5
 3.5 -> Déclaration d’un variable, saisie d’un nombre et affichage de ce nombre
+```
+lxc exec FullRPC -- bash
+```
+```
 nano saisie.c
- 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
-
-
 void main(){
 	int var = 0;
 	printf("veuillez entrer un nombre entier\n");
 	scanf("%d", &var);
 	printf("vous avez entré? le nombre : %d \n", var);
-
 }
-
-
+```
+```
 gcc -c saisie.c 
+```
+```
 gcc -o saisie saisie.o 
+```
+```
 chmod +x saisie
+```
+```
 ./saisie
- 
+```
+```
+exit
+```
 
-REPONSE 3.6
+# Reponse 3.6
 3.6 -> Creation de fonction somme (entier)
+```
+lxc exec FullRPC -- bash
+```
+```
 nano fonc_somme.c
- 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
-
 
 int somme(int nb1, int nb2){
 	return nb1 + nb2;
 }
-
 
 void main(){
 	int nombre1;
@@ -301,27 +376,39 @@ void main(){
 	printf("Entrer un nombre\n");
 	scanf("%d", &nombre1);
 
-
 	printf("Entrer un autre nombre\n");
 	scanf("%d", &nombre2);
-
 	
 	resultat = somme(nombre1, nombre2);
 	printf("la somme de %d et de %d est donc : %d\n", nombre1, nombre2, resultat);
 }
-
-
+```
+```
 gcc -c fonc_somme.c 
+```
+```
 gcc -o fonc_somme fonc_somme.o 
+```
+```
 chmod +x fonc_somme
+```
+```
 ./fonc_somme
- 
+```
+```
+exit
+```
 
-
-REPONSE 3.7
+# Reponse 3.7
 3.7 -> Creation d’une fonction somme avec verification overflow
+```
+lxc exec FullRPC -- bash
+```
+```
 nano overf_somme.c 
- 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -362,23 +449,38 @@ void main(){
 		printf("erreur de la somme\n");
 	}
 }
-
-
+```
+```
 gcc -c overf_somme.c 
+```
+```
 gcc -o overf_somme overf_somme.o 
+```
+```
 chmod +x overf_somme
-
+```
+```
 ./overf_somme 
-Le nombre maximal unsigned int est : 4294967295
- 
-Note bonus pour la verification overf_somme en utilisant int et non unsigned int ?
+```
+Le nombre maximal unsigned int est : 4294967295 </br>
+Note bonus pour la verification overf_somme en utilisant int et non unsigned int ? </br>
+```
+exit
+```
 
 
 
-REPONSE 3.8 : cf. https://www.youtube.com/watch?v=cByXgJXaTB4
+# Reponse 3.8 :
+cf.  [video_indication](https://www.youtube.com/watch?v=cByXgJXaTB4) </br>
 3.8 -> Creation d’une structure pour faire une function somme avec verification de overflow
+```
+lxc exec FullRPC -- bash
+```
+```
 nano somme_struct.c
- 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -429,29 +531,41 @@ void main(){
 	}
 
 }
-
+```
+```
 gcc -c somme_struct.c 
+```
+```
 gcc -o somme_struct somme_struct.o 
+```
+```
 chmod +x somme_struct
+```
+```
 ./somme_struct
- 
-Le nombre maximal unsigned int est : 4294967295
- 
-	Note BONUS : Pour un code en C, non signé avec verification overflow ?
+```
+Le nombre maximal unsigned int est : 4294967295 </br> 
+Note BONUS : Pour un code en C, non signé avec verification overflow ?
+```
+exit
+```
 
-REPONSE 3.9 
+# Reponse 3.9 
 3.9 -> passage par pointeur de la function somme
- nano pointeur_somme.c 
- 
-
+```
+lxc exec FullRPC -- bash
+```
+```
+nano pointeur_somme.c 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
-
 
 void somme(int *result, int nb1, int nb2){
 	(*result) =  nb1 + nb2;
 }
-
 
 void main(){
 	int nombre1;
@@ -461,36 +575,48 @@ void main(){
 	printf("Entrer un nombre\n");
 	scanf("%d", &nombre1);
 
-
 	printf("Entrer un autre nombre\n");
 	scanf("%d", &nombre2);
-
 	
 	somme(&resultat, nombre1, nombre2);
 	printf("la somme de %d et de %d est donc : %d\n", nombre1, nombre2, resultat);
 }
-
+```
+```
 gcc -c pointeur_somme.c 
+```
+```
 gcc -o pointeur_somme pointeur_somme.o 
+```
+```
 chmod +x pointeur_somme
+```
+```
 ./pointeur_somme
- 
+```
+```
+exit
+```
 
-REPONSE 3.10 :
-3.10 ->  Création d’une de la function somme C en utilisant une passage par pointeur
+
+# Reponse 3.10 :
+3.10 ->  Création d’une de la function somme C en utilisant une passage par pointeur 
+```
+lxc exec FullRPC -- bash
+```
+```
 nano somme_struct_pointeur.c 
- 
+```
+Copier le code suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
 #include <stdio.h>
 #include <stdlib.h>
-
 
 typedef struct info{
 	unsigned int nombre1;
 	unsigned int nombre2;
 	unsigned int resultat;
 	unsigned int errno; //la fonction somme retourne -1 comme errno si c'est faux, retourne 1 sinon 
-	 
-
 }info;
 
 
@@ -528,15 +654,23 @@ void main(){
 	}
 
 }
-
+```
+```
 gcc -c somme_struct_pointeur.c 
+```
+```
 gcc -c somme_struct_pointeur.c 
+```
+```
 gcc -o somme_struct_pointeur somme_struct_pointeur.o 
+```
+```
 chmod +x somme_struct_pointeur
+```
+```
 ./somme_struct
- 
-Le nombre maximal unsigned int est : 4294967295
-
+```
+Le nombre maximal unsigned int est : 4294967295 </br>
+```
 exit 
-
-
+```
