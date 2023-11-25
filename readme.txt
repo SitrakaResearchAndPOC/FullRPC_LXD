@@ -1,3 +1,11 @@
+# FullRPC Installation : 
+* Docker installation
+* Exercices Socket in C
+* Exercices RPC in C
+* Exercices Makefile in Linux
+
+
+```
 lxc launch images:debian/10 FullRPC
 lxc exec FullRPC -- bash
 
