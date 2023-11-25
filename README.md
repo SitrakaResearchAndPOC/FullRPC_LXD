@@ -674,3 +674,229 @@ Le nombre maximal unsigned int est : 4294967295 </br>
 ```
 exit 
 ```
+
+# Exercice 4.1 : RPC calcul
+TP RPC cf.  lecons 
+```
+lxc exec FullRPC -- bash
+```
+```
+mkdir RPC
+```
+```
+cd RPC/
+```
+```
+ls
+```
+```
+mkdir somme
+```
+```
+cd somme/
+```
+```
+nano calcul.x
+```
+Copier la configuration IDL suivant puis tapez ctrl+x et Y et enter pour enregistrer
+```
+struct data {
+  unsigned int arg1;
+  unsigned int arg2;
+};
+
+typedef struct data data;
+
+struct reponse {
+  unsigned int somme;
+  int errno;
+};
+
+typedef struct reponse reponse;
+
+program CALCUL{
+  version VERSION_UN{
+    void CALCUL_NULL(void) = 0;
+    reponse CALCUL_ADDITION(data) = 1;
+  } = 1;
+} = 0x20000001;
+```
+```
+rpcgen -a calcul.x
+```
+```
+ls
+```
+rpcgen a généré des code c et Makefile pour nous
+```
+gcc -c calcul_xdr.c
+```
+```
+gcc -c calcul_clnt.c
+```
+```
+gcc -c calcul_svc.c
+```
+En regardant dans le fichier  : 
+```
+nano calcul_server.c
+```
+Il faut modifier le code en implementant l’addition à faire au niveau de serveur en particulier dans la function calcul_addition_1_svc
+``` 
+#include "calcul.h"
+
+void * 
+calcul_null_1_svc(void *argp, struct svc_req *rqstp)
+{
+  static char* result;
+  /* Ne rien faire */
+  return((void*) &result);
+}
+
+reponse * 
+calcul_addition_1_svc(data *argp, struct svc_req *rqstp)
+{
+  static reponse  result;
+  unsigned int max;
+
+  result.errno = 0; /* Pas d'erreur */
+
+  /* Prend le max */
+  max = argp->arg1 > argp->arg2 ? argp->arg1 : argp->arg2;
+
+  /* On additionne */
+  result.somme = argp->arg1 + argp->arg2; 
+
+  /* Overflow ? */
+  if ( result.somme < max ) {
+    result.errno = 1;
+  }
+    
+  return(&result);
+}
+```
+```
+gcc -c calcul_server.c
+```
+```
+gcc -o server calcul_svc.o calcul_server.o calcul_xdr.o
+```
+```
+./server &
+``` 
+ctrl +shift + t
+```
+lxc exec FullRPC -- bash
+```
+```
+rpcinfo -p
+```
+```
+cd RPC/somme
+```
+```
+mkdir client
+```
+```
+cp calcul.x client/
+```
+```
+cd client
+```
+```
+rpcgen -a calcul.x 
+```
+```
+ls
+```
+```
+gcc -c calcul_xdr.c
+```
+```
+gcc -c calcul_clnt.c
+```
+```
+gcc -c calcul_svc.c
+```
+Regardons d’abord le code calcul_client.c par : 
+```
+```
+nano calcul_client.c
+```
+Changeons par le code adequate en particulier dans la fonction main tout en créant la function test_addition. </br>
+Aprés modification, le code sera : (le mieux est d'effacer la fonction main est recopier le code) </br>
+```
+nano calcul_client.c
+```
+#include <limits.h>
+#include "calcul.h"
+
+CLIENT *clnt;
+
+void
+test_addition (uint param1, uint param2)
+{	
+  reponse  *resultat;
+  data  parametre;
+
+  /* 1. Preparer les arguments */
+  
+  parametre.arg1 = param1;
+  parametre.arg2 = param2; 
+  printf("Appel de la fonction CALCUL_ADDITION avec les parametres: %u et %u \n", parametre.arg1,parametre.arg2);
+
+  /* 2. Appel de la fonction distante */
+  
+  resultat = calcul_addition_1 (&parametre, clnt);
+  if (resultat == (reponse *) NULL) {
+    clnt_perror (clnt, "call failed");
+    clnt_destroy (clnt);
+    exit(EXIT_FAILURE);
+  }
+  else if ( resultat->errno == 0 ) {
+    printf("Le resultat de l'addition est: %u \n\n",resultat->somme);
+  } else {
+    printf("La fonction distante ne peut faire l'addition a cause d'un overflow \n\n");
+  }
+  
+}
+
+int
+main (int argc, char *argv[])
+{
+  char *host;
+  
+  if (argc < 2) {
+    printf ("usage: %s server_host\n", argv[0]);
+    exit (1);
+  }
+  host = argv[1];
+  
+  clnt = clnt_create (host, CALCUL, VERSION_UN, "udp");
+  if (clnt == NULL) {
+    clnt_pcreateerror (host);
+    exit (1);
+  }
+  
+  test_addition ( UINT_MAX - 15, 10 );
+  test_addition ( UINT_MAX, 10 );
+  
+  clnt_destroy (clnt);
+  exit(EXIT_SUCCESS);
+}
+```
+```
+gcc -c calcul_client.c
+```
+```
+gcc -o client calcul_client.o calcul_clnt.o calcul_xdr.o
+```
+```
+./client localhost
+```
+```
+exit
+```
+
+ 
+
