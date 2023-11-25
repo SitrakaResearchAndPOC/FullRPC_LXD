@@ -61,4 +61,71 @@ Dans l’autre terminal : </br>
 Tapez : ok </br>
 Dans l’autre terminal : </br>
 Quittez </br>
+```
+exit
+```
+
+
+
+
+Exercice 2 :  TP RPC
+Installation des dependances  </br>
+Essai de RPC pour hello world code predefine : [RPC_Helloworld](https://github.com/riyazathali/RPC-HelloWorld) 
+```
+lxc exec FullRPC -- bash
+```
+```
+apt update
+```
+```
+sudo apt install rpcbind
+```
+```
+/etc/init.d/rpcbind start
+```
+```
+sudo apt install build-essential
+```
+```
+sudo apt-get install manpages-dev
+```
+```
+sudo apt install libc-dev-bin
+```
+```
+apt-get install zip
+```
+```
+apt-get install git
+
+```
+```
+apt-get install nano mousepad
+```
+rpcgen devrait marcher correctement : 
+```
+git clone https://github.com/riyazathali/RPC-HelloWorld
+```
+```
+cd RPC-HelloWorld/
+```
+```
+rpcgen -a -C hw.x
+```
+```
+make -f Makefile.hw
+```
+```
+sudo ./hw_server 
+```
+Tapez ctrl-shift T 
+```
+lxc exec FullRPC -- bash
+```
+```
+cd RPC-HelloWorld/
+```
+```
+sudo ./hw_client localhost
+```
 
