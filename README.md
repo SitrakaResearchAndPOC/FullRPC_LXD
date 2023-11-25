@@ -213,7 +213,7 @@ exit
 
 # Reponse 3.3
 3.3 -> Afffichage de texte entrée comme paramètre en ligne de commande </br>
-La declaration de main deviant c.f [argc](https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean) : 
+La declaration de main deviant c.f [argc](https://stackoverflow.com/questions/3024197/what-does-int-argc-char-argv-mean) :  </br>
 int main (int argc, char *argv[]); //first declaration </br>
 int main (int argc, char **argv);  //RE-DECLARATION. Equivalent to the above declaration </br>
 ```
@@ -820,7 +820,6 @@ gcc -c calcul_svc.c
 ```
 Regardons d’abord le code calcul_client.c par : 
 ```
-```
 nano calcul_client.c
 ```
 Changeons par le code adequate en particulier dans la fonction main tout en créant la function test_addition. </br>
@@ -897,6 +896,4 @@ gcc -o client calcul_client.o calcul_clnt.o calcul_xdr.o
 ```
 exit
 ```
-
- 
-
+# test
