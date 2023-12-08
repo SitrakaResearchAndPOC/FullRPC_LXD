@@ -1647,6 +1647,69 @@ md5sum 7f896585044a87054e5da9aaa1a7b88d65618cbc47148741e90dedaca32c07f8.tar.gz
 ```
 chmod 777 7f896585044a87054e5da9aaa1a7b88d65618cbc47148741e90dedaca32c07f8.tar.gz
 ```
+
+# Quick Install
+## Installation with LXC  using ubuntu if not yet installed
+```
+apt update
+```
+```
+apt-get install lxd lxd-client
+```
+
+
+## Installation with LXC  using DragonOS if not yet installed
+```
+apt update
+```
+```
+apt-get install snapd  
+```
+```
+snap install lxd  
+```
+
+```
+snap install lxd-client  
+```
+
+## Initialisation of LXD if not yet installed
+```
+lxd init  
+```
+For questions please follow the default option, an image illustration is at [image](https://github.com/SitrakaResearchAndPOC/QCSuper/blob/main/screen.jpg) 
+  
+User need to be in group lxd :
+```
+sudo usermod -a G lxd $USER  
+```
+or  
+```
+sudo /usr/sbin/usermod lxd $USER  
+```
+
+$PATH need to contains /usr/local/bin, verify with :  
+```
+echo $PATH  
+```
+
+if not, setup this, or add this in your .bashrc or .zshrc or ...  
+
+```
+export PATH=$PATH:/usr/local/bin  
+```
+# IMPORTING IMAGES FOR QUICK INSTALL
+## downloading and importing image for Quick install
+```
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Dg7DjZhS9Ed_KjPV2cioQkbvsmOvLhiR' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Dg7DjZhS9Ed_KjPV2cioQkbvsmOvLhiR" -O 7f896585044a87054e5da9aaa1a7b88d65618cbc47148741e90dedaca32c07f8.tar.gz   && rm -rf /tmp/cookies.txt  
+```
+```
+lxc image import 7f896585044a87054e5da9aaa1a7b88d65618cbc47148741e90dedaca32c07f8.tar.gz --alias FullRPCimage
+```
+```
+lxc launch FullRPCimage FullRPC
+```
+
 # Remarques 
 LES CODES DE C ET RPC SERONT DANS GITHUB : </br>
 •	https://github.com/ImsicatcherBastienbaranoff/RPC
