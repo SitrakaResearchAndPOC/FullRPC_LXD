@@ -10,6 +10,13 @@ lxc launch images:debian/10 FullRPC
 ```
 lxc exec FullRPC -- bash
 ```
+```
+apt update
+```
+```
+apt install git
+```
+
 # EXERCICE 1 : SOCKET 
 ```
 mkdir SOCKET
