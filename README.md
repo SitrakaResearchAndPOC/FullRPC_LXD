@@ -14,7 +14,7 @@ lxc exec FullRPC -- bash
 apt update
 ```
 ```
-apt install git
+apt install git zip
 ```
 
 # EXERCICE 1 : SOCKET 
