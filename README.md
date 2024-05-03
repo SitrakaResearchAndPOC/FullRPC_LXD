@@ -2,6 +2,43 @@
 * Installation LXC de debian 10
 * Exercices concernant les socket
 * Exercices concernant RPC et Makefile
+# installation LXD
+# INSTALLING LXD
+## For recent version by snap
+```  
+apt update
+```  
+```  
+apt install snapd 
+```  
+```  
+snap install lxd 
+```  
+```  
+snap install lxd-client
+```  
+```  
+sudo usermod -a G lxd $USER  
+```  
+```  
+export PATH=$PATH:/usr/local/bin  
+```  
+## For old version by only apt
+```  
+apt update
+```  
+```  
+apt-get install lxd 
+```  
+```  
+apt-get install lxd-client
+```  
+```  
+sudo usermod -a G lxd $USER  
+```  
+```  
+export PATH=$PATH:/usr/local/bin  
+```  
 
 # Installation de Debian 10 dans LXC
 ```
@@ -15,6 +52,9 @@ apt update
 ```
 ```
 apt install git zip gcc
+```
+```
+apt-get install nano mousepad
 ```
 
 # EXERCICE 1 : SOCKET 
@@ -48,6 +88,9 @@ chmod +x tcpserver
 ```
 exit
 ```
+# GUI INSTALLING
+
+
 # Lanchement de FullRPC comme socket
 ```
 lxc exec FullRPC -- bash
@@ -1716,6 +1759,128 @@ lxc image import 7f896585044a87054e5da9aaa1a7b88d65618cbc47148741e90dedaca32c07f
 ```
 lxc launch FullRPCimage FullRPC
 ```
+
+# ADDING PROFILE GUI AND INSTALLING FOR MOUSEPAD
+# Installing firefox for testing gui
+```
+apt-get install mousepad
+```
+```
+nano .gui.txt
+```
+Copy this config of.gui.txt
+```
+config:
+  environment.DISPLAY: :0
+  raw.idmap: both 1000 1000
+description: GUI LXD profile
+devices:
+  X0:
+    path: /tmp/.X11-unix/X0
+    source: /tmp/.X11-unix/X0
+    type: disk
+  my_gpu:
+    type: gpu
+name: gui
+```
+SAVE THE FILE as .gui.txt </br>
+Create the profile
+```
+lxc profile create gui
+```
+```
+lxc profile edit gui < .gui.txt
+```
+```
+rm .gui.txt
+```
+```
+lxc profile add  FullRPC gui
+```
+```
+lxc config set  FullRPC security.privileged=true
+```
+```
+lxc start  FullRPC
+```
+Testing GUI mousepad
+```
+lxc exec FullRPC -- mousepad
+```
+## Problem of display for Quick install
+Problem display at [display](https://bbs.archlinux.org/viewtopic.php?id=221449) or [pdf_display](https://github.com/SitrakaResearchAndPOC/HackrfJAM_LXD/blob/main/How%20to%20resolve%20%E2%80%9CNo%20protocol%20specified%20Unable%20to%20init%20server__%20%5BSolved%5D%20_%20Newbie%20Corner%20_%20Arch%20Linux%20Forums.pdf) </br>
+
+* reboot the real machine :
+```
+rm -rf /tmp/.X11-unix/X*
+```
+```
+reboot
+```
+* please reboot the container images : 
+```
+lxc stop  FullRPC
+```
+```
+lxc start  FullRPC
+```
+* listing the profile
+```
+lxc profile list
+```
+* adding the profile
+```
+lxc profile add  FullRPC gui
+```
+* Please verify if there are two x0 and choose following ;
+You could verify using
+```
+lsof -U | grep X1
+```
+
+```
+chmod +x /tmp/.X11-unix/X0
+```
+or xhost +local:
+```
+xhost +
+```
+non-network local connections being added to access control list
+```
+pgrep -a X
+```
+```
+echo $DISPLAY
+```
+```
+echo $TERM
+```
+* IF PROBLEM PERSIST
+```
+lxc profile edit gui
+```
+Change the number of dispaly as on the command echo $DISPLAY
+```
+config:
+  environment.DISPLAY: :1
+  raw.idmap: both 1000 1000
+description: GUI LXD profile
+devices:
+  X1:
+    path: /tmp/.X11-unix/X1
+    source: /tmp/.X11-unix/X1
+    type: disk
+  my_gpu:
+    type: gpu
+name: gui
+```
+* remak all step on the PROBLEM OF DISPLAY
+* if problem still persists ; change by other number and look at : </br> [link1](https://bbs.archlinux.org/viewtopic.php?id=221449) </br>[link2](https://bbs.archlinux.org/viewtopic.php?id=272491)  </br> [link3](https://bbs.archlinux.org/viewtopic.php?id=270585) </br> [link4](https://bbs.archlinux.org/viewtopic.php?id=281572) </br> [link5](https://bbs.archlinux.org/viewtopic.php?id=288581) </br>
+```
+lxc exec Full RPC -- mousepad
+```
+
+
 
 # Remarques 
 LES CODES DE C ET RPC SERONT DANS GITHUB : </br>
