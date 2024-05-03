@@ -1762,9 +1762,7 @@ lxc launch FullRPCimage FullRPC
 
 # ADDING PROFILE GUI AND INSTALLING FOR MOUSEPAD
 # Installing firefox for testing gui
-```
-apt-get install mousepad
-```
+Exit the container FullRPC
 ```
 nano .gui.txt
 ```
@@ -1804,6 +1802,9 @@ lxc config set  FullRPC security.privileged=true
 lxc start  FullRPC
 ```
 Testing GUI mousepad
+```
+xhost +
+```
 ```
 lxc exec FullRPC -- mousepad
 ```
