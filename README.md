@@ -162,6 +162,9 @@ rpcgen -a -C hw.x
 make -f Makefile.hw
 ```
 ```
+chmod +x hw_server 
+```
+```
 sudo ./hw_server 
 ```
 Tapez ctrl-shift T 
@@ -170,6 +173,9 @@ lxc exec FullRPC -- bash
 ```
 ```
 cd RPC-HelloWorld/
+```
+```
+chmod +x hw_client
 ```
 ```
 sudo ./hw_client localhost
@@ -832,6 +838,9 @@ gcc -c calcul_server.c
 gcc -o server calcul_svc.o calcul_server.o calcul_xdr.o
 ```
 ```
+chmod +x server
+```
+```
 ./server &
 ``` 
 ctrl +shift + t
@@ -937,6 +946,9 @@ gcc -c calcul_client.c
 ```
 ```
 gcc -o client calcul_client.o calcul_clnt.o calcul_xdr.o
+```
+```
+chmod +x client
 ```
 ```
 ./client localhost
@@ -1048,6 +1060,9 @@ gcc -c va_server.c
 gcc -o server va_svc.o va_server.o va_xdr.o
 ```
 ```
+chmod +x server
+```
+```
 ./server &
 ```
 Tapez ctrl+shit+T
@@ -1083,9 +1098,6 @@ gcc -c va_clnt.c
 ```
 ```
 gcc -c va_svc.c
-```
-```
-nano va_client.c
 ```
 Le code initial dans va_client est: </br>
 Modifions le code dans le main pour faire l’appel de Valeur absolue </br>
@@ -1150,6 +1162,9 @@ gcc -c va_client.c
 gcc -o client va_client.o va_clnt.o va_xdr.o
 ```
 ```
+chmod +x client
+```
+```
 ./client localhost
 ```
 ```
@@ -1207,9 +1222,6 @@ gcc -c factorisation_clnt.c
 ```
 ```
 gcc -c factorisation_svc.c
-```
-```
-nano factorisation_server.c
 ```
 Verifions d’abord le code par défaut </br>
 Modifions le code de la function factorisation </br>
@@ -1289,6 +1301,9 @@ gcc -c factorisation_server.c
 gcc -o server factorisation_svc.o factorisation_server.o factorisation_xdr.o
 ```
 ```
+chmod +x server
+```
+```
 ./server &
 ```
 ctrl + shift + t
@@ -1324,9 +1339,6 @@ gcc -c factorisation_clnt.c
 ```
 ```
 gcc -c factorisation_svc.c
-```
-```
-nano factorisation_client.c
 ```
 Le code initial dans factorisation_client est: </br>
 Modifions le code dans le main pour faire l’appel de la function factorisation </br>
@@ -1400,6 +1412,9 @@ gcc -c factorisation_client.c
 ```
 ```
 gcc -o client factorisation_client.o factorisation_clnt.o factorisation_xdr.o
+```
+```
+chmod +x client
 ```
 ```
 ./client localhost
