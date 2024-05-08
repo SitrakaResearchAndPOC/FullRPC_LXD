@@ -1464,7 +1464,7 @@ clean:
 make all
 ```
 ```
-chmod +x 
+chmod +x exec 
 ```
 ```
 ./exec 
@@ -1532,7 +1532,7 @@ clean:
 make all
 ```
 ```
-chmod +x 
+chmod +x  exec
 ```
 ```
 ./exec 
@@ -1602,7 +1602,7 @@ clean:
 make all
 ```
 ```
-chmod +x 
+chmod +x exec 
 ```
 ```
 ./exec 
@@ -1666,7 +1666,7 @@ clean:
 make all
 ```
 ```
-chmod +x 
+chmod +x exec
 ```
 ```
 ./exec 
